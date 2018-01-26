@@ -1,5 +1,6 @@
 package by.mrj.domain;
 
+import by.mrj.domain.trx.Transaction;
 import by.mrj.util.CryptoUtil;
 import lombok.Builder;
 import lombok.ToString;
@@ -10,15 +11,15 @@ import java.util.Set;
 
 @Value
 @ToString(callSuper = true)
-public class Block<T extends Asset> extends BlockHeader implements Hashable, Serializable {
+public class Block extends BlockHeader implements Hashable, Serializable {
+
+    private Set<Transaction> transactions;
 
     @Builder
-    private Block(int version, String previousBlockHash, String merkleRoot, long timestamp, int assetsCount, Set<T> assets) {
+    private Block(int version, String previousBlockHash, String merkleRoot, long timestamp, int assetsCount, Set<Transaction> transactions) {
         super(version, previousBlockHash, merkleRoot, timestamp, assetsCount);
-        this.assets = assets;
+        this.transactions = transactions;
     }
-
-    private Set<T> assets;
 
     @Override
     public String hash() {

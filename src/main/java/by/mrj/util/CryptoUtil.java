@@ -17,7 +17,11 @@ public class CryptoUtil {
                 .toString();
     }
 
-    public static String ripemd160(String toHash) {
+    public static String sha256ripemd160(String toHash) {
         return Ripemd160.hash(CryptoUtil.sha256(toHash)); // used for address. In Bitcoin toHash is a PubK.
+    }
+
+    public static String signTrx(String prvKey) {
+        return "stub";
     }
 }

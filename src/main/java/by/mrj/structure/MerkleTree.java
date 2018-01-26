@@ -1,6 +1,6 @@
 package by.mrj.structure;
 
-import by.mrj.domain.Asset;
+import by.mrj.domain.trx.Transaction;
 import by.mrj.util.CryptoUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -20,9 +20,9 @@ public class MerkleTree {
     private final Node root;
     private final Map<String, Node> assetNodes;
 
-    public MerkleTree(Set<? extends Asset> nodes) {
+    public MerkleTree(Set<Transaction> nodes) {
         List<Node> nodesHashes = nodes.stream()
-                .map(Asset::hash)
+                .map(Transaction::hash)
                 .map(Node::new)
                 .collect(toList());
 
