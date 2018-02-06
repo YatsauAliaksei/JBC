@@ -2,24 +2,21 @@ package by.mrj.domain.trx;
 
 import by.mrj.domain.Hashable;
 import by.mrj.util.CryptoUtil;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
 
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Getter
 @Builder
 @ToString
 public class Transaction implements Hashable {
-    int version;
-    int inCount;
-    Set<TrxIn> trxInputs;
-    int outCount;
-    Set<TrxOut> trxOutputs;
+    private int version;
+    private int inCount;
+    private Set<TrxIn> trxInputs;
+    private int outCount;
+    private Set<TrxOut> trxOutputs;
 
     @Override
     public String hash() {

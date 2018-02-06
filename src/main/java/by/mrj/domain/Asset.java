@@ -2,21 +2,24 @@ package by.mrj.domain;
 
 
 import by.mrj.util.CryptoUtil;
-import lombok.Builder;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 @Getter
-@Builder
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
-public class Asset implements Hashable, Serializable {
+@ToString
+public abstract class Asset implements Hashable, Serializable {
 
-    private String value;
+    private float amount; // precision should be checked and restricted.
 
     @Override
     public String hash() {
-        return CryptoUtil.doubleSha256(value);
+        return CryptoUtil.doubleSha256("" + amount);
     }
 }
